@@ -8,6 +8,36 @@ This document describes the current implementation of the project as found in th
 
 ---
 
+## Table of Contents
+
+- [Project Title](#project-title)
+- [Project Overview](#project-overview)
+  - [Problem Statement](#problem-statement)
+  - [Objective](#objective)
+  - [Motivation](#motivation)
+  - [Key Features](#key-features)
+- [System Architecture](#system-architecture)
+  - [High-Level Architecture](#high-level-architecture)
+  - [Frontend Architecture](#frontend-architecture)
+  - [Backend Architecture](#backend-architecture)
+  - [Database Architecture](#database-architecture)
+  - [AI/ML Architecture](#aiml-module-explanation)
+  - [Data Flow Between Modules](#data-flow-between-modules)
+- [Technology Stack](#technology-stack)
+- [Project Folder Structure](#project-folder-structure)
+- [Database Design](#database-design)
+- [API Documentation](#api-documentation)
+- [Authentication and Security](#authentication-and-security)
+- [Core Modules Explanation](#core-modules-explanation)
+- [AI/ML Module Explanation](#aiml-module-explanation)
+- [Installation Guide](#installation-guide)
+- [Deployment Guide](#deployment-guide)
+- [Architecture Diagrams](#architecture-diagrams)
+- [Challenges Faced](#challenges-faced)
+- [Performance Optimizations](#performance-optimizations)
+
+
+
 ## 1. Project Title
 
 **Smart Attendance - Automated College Attendance Management System**
@@ -739,115 +769,6 @@ The repository includes evaluation artifacts and experiment outputs in the face-
 ## 11. Installation Guide
 
 For a focused step-by-step setup guide that lists local ports, environment variables, and runnable commands, see [SETUP_GUIDE.md](SETUP_GUIDE.md).
-
-### Prerequisites
-
-- Python 3.9 or later for the backend and AI services.
-- Node.js and npm for the web and mobile frontends.
-- MySQL 8.0 or later.
-- Expo CLI or EAS CLI for the mobile app.
-- Docker and Docker Compose if container-based setup is preferred.
-
-### Environment Setup
-
-#### Backend
-
-1. Change into the backend directory.
-2. Create a virtual environment.
-3. Install Python dependencies.
-4. Copy the environment template and edit it.
-
-Backend environment variables are read from `backend/config.py` and typically include:
-
-- `DATABASE_URL` or `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT`, `DB_NAME`
-- `SECRET_KEY`
-- `ACCESS_TOKEN_EXPIRE_MINUTES`
-- `HOST`, `PORT`, `ENV`, `SQL_ECHO`
-- `CORS_ORIGINS`
-- `FACE_API_ENDPOINT`, `FACE_API_KEY`
-- `CLOUDINARY_URL`
-- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_IDS`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI`
-
-#### Mobile Frontend (`AppFrontend`)
-
-The Expo app uses `AppFrontend/app.json` values such as:
-
-- `expo.extra.apiUrl`
-- `expo.extra.sessionTimeoutHours`
-- Google client IDs for web, Android, and iOS
-
-#### Web Frontend (`frontend`)
-
-The web frontend is a Vite application and should be configured to point to the correct backend base URL in its services or config files.
-
-### Dependency Installation
-
-#### Backend
-
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### AppFrontend
-
-```bash
-cd AppFrontend
-npm install --legacy-peer-deps
-```
-
-#### frontend
-
-```bash
-cd frontend
-npm install
-```
-
-### Backend Setup
-
-1. Create the MySQL database named `college_attendance` or use your configured database name.
-2. Set the environment variables in `.env`.
-3. Run database migrations if required.
-4. Start the backend server with `python main.py`.
-
-### Frontend Setup
-
-- Start the Expo app with `npx expo start`.
-- Start the web frontend with `npm run dev` in the `frontend` directory.
-
-### Database Setup
-
-- Create the MySQL schema.
-- Ensure the backend can reach the database host.
-- Run Alembic migrations or the project initialization routines if present.
-- you can use the sql queries which present in the backend/queries.sql
-
-### Running Locally
-
-#### Backend
-
-```bash
-cd backend
-python main.py
-```
-
-#### AppFrontend
-
-```bash
-cd AppFrontend
-npx expo start
-```
-
-#### frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
----
 
 ## 12. Deployment Guide
 
