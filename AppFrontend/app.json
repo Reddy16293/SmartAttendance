@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "AppFrontend",
+    "slug": "AppFrontend",
+    "owner": "attendance16293",
+    "scheme": "automated-attendance",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.reddy16293.AppFrontend"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-web-browser"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "810380be-220a-4212-807b-a7f16b2203b0"
+      },
+      "apiUrl": "https://automatedattendancesystem-1.onrender.com",
+      "sessionTimeoutHours": 8,
+      "googleWebClientId": "51434273449-huqsb7r908qsdvouo3fk6tidi5dikunv.apps.googleusercontent.com",
+      "googleAndroidClientId": "51434273449-l38ohl6r4d2nmj1mrpctqll66s49f4qu.apps.googleusercontent.com",
+      "googleIosClientId": "REPLACE_WITH_GOOGLE_IOS_CLIENT_ID"
+    }
+  }
+}

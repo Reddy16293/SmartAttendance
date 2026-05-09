@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: college_attendance_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: college_attendance
+      MYSQL_USER: attendance_user
+      MYSQL_PASSWORD: attendance_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - college_network
+
+  # FastAPI Backend
+  backend:
+    build: .
+    container_name: college_attendance_api
+    environment:
+      DB_USER: attendance_user
+      DB_PASSWORD: attendance_pass
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: college_attendance
+      SECRET_KEY: your-secret-key-change-in-production
+      ENV: development
+      SQL_ECHO: "false"
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - college_network
+
+volumes:
+  mysql_data:
+
+networks:
+  college_network:
+    driver: bridge

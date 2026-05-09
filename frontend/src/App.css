@@ -1,0 +1,98 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Mobile-First Responsive Utilities */
+@layer components {
+  /* Mobile card layouts */
+  .mobile-card {
+    @apply rounded-lg border bg-card text-card-foreground shadow-sm p-3 md:p-6;
+  }
+
+  .mobile-card-header {
+    @apply flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4 mb-4;
+  }
+
+  .mobile-actions {
+    @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3;
+  }
+
+  .mobile-btn {
+    @apply h-auto py-3 md:py-2 text-xs md:text-sm flex-col md:flex-row;
+  }
+
+  .mobile-table {
+    @apply block md:table w-full border-collapse;
+  }
+
+  .mobile-table-row {
+    @apply block md:table-row border-b md:border-b last:border-b-0;
+  }
+
+  .mobile-table-cell {
+    @apply block md:table-cell p-3 md:p-4 before:content-[attr(data-label)] before:font-bold before:mr-2 md:before:content-none text-sm md:text-base;
+  }
+
+  /* Responsive text */
+  .mobile-text {
+    @apply text-sm md:text-base;
+  }
+
+  .mobile-heading {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  /* Button grids */
+  .btn-stack {
+    @apply flex flex-col sm:flex-row gap-2 md:gap-3 w-full sm:w-auto;
+  }
+
+  /* Form responsive */
+  .form-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4;
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
+}
+
+.read-the-docs {
+  color: #888;
+}
