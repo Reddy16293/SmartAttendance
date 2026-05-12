@@ -1,71 +1,32 @@
-# Smart Attendance - Automated College Attendance Management System
+# Smart Attendance
 
 ## Developer Manual and Technical Documentation
 
 **Repository scope:** `backend`, `AppFrontend`, `frontend`, and `FaceModel`
 
-This document describes the current implementation of the project as found in the repository. It is written in an academic and industry-oriented style suitable for college submission, demo presentations, and portfolio use.
-
----
+This document describes the current implementation of the project as found in the repository.
 
 ## Table of Contents
 
-- [Project Title](#project-title)
-- [Project Overview](#project-overview)
-  - [Problem Statement](#problem-statement)
-  - [Objective](#objective)
-  - [Motivation](#motivation)
-  - [Key Features](#key-features)
-- [System Architecture](#system-architecture)
-  - [High-Level Architecture](#high-level-architecture)
-  - [Frontend Architecture](#frontend-architecture)
-  - [Backend Architecture](#backend-architecture)
-  - [Database Architecture](#database-architecture)
-  - [AI/ML Architecture](#aiml-module-explanation)
-  - [Data Flow Between Modules](#data-flow-between-modules)
-- [Technology Stack](#technology-stack)
-- [Project Folder Structure](#project-folder-structure)
-- [Database Design](#database-design)
-- [API Documentation](#api-documentation)
-- [Authentication and Security](#authentication-and-security)
-- [Core Modules Explanation](#core-modules-explanation)
-- [AI/ML Module Explanation](#aiml-module-explanation)
-- [Installation Guide](#installation-guide)
-- [Deployment Guide](#deployment-guide)
-- [Architecture Diagrams](#architecture-diagrams)
-- [Challenges Faced](#challenges-faced)
-- [Performance Optimizations](#performance-optimizations)
-
-
-
-## 1. Project Title
-
-**Smart Attendance - Automated College Attendance Management System**
-
-The project provides a digital attendance platform for colleges that combines role-based access control, timetable management, student enrollment, attendance capture through code and QR flows, and AI-assisted face recognition for classroom attendance verification.
-
+1. [Project Overview](#1-project-overview)
+2. [System Architecture](#2-system-architecture)
+3. [Technology Stack](#3-technology-stack)
+4. [Project Folder Structure](#4-project-folder-structure)
+5. [Database Design](#5-database-design)
+6. [API Documentation](#6-api-documentation)
+7. [Authentication and Security](#7-authentication-and-security)
+8. [Core Modules Explanation](#8-core-modules-explanation)
+9. [ML Module Explanation](#9-ml-module-explanation)
+10. [Installation Guide](#10-installation-guide)
+11. [Deployment Guide](#11-deployment-guide)
+12. [Architecture Diagrams](#12-architecture-diagrams)
+13. [Performance Optimizations](#13-performance-optimizations)
+14. [References](#14-references)
 ---
 
-## 2. Project Overview
+## 1. Project Overview
 
-### Problem Statement
-
-Manual attendance processes in colleges are time-consuming, repetitive, and vulnerable to human error, proxy attendance, and incomplete record keeping. Conventional paper registers also make it difficult to generate accurate attendance reports, identify low-attendance students early, and maintain audit trails for administrative review.
-
-### Objective
-
-The objective of this project is to develop a centralized attendance management system that:
-
-- Reduces manual attendance effort for faculty.
-- Provides secure authentication for students and teachers.
-- Supports multiple attendance modes, including code, QR, and face recognition.
-- Stores attendance records in a structured relational database.
-- Generates real-time attendance summaries and reports.
-- Improves transparency through audit logging and teacher override workflows.
-
-### Motivation
-
-The project is motivated by the need for a practical college-level attendance platform that is both technically robust and easy to use. It demonstrates a full-stack architecture involving mobile and web clients, API-driven backend logic, relational persistence, and AI-assisted automation.
+The Smart Attendance System is a college attendance platform spanning three codebases: a FastAPI backend (backend/), a React web client (frontend/), and a React Native mobile client (AppFrontend/). Attendance can be captured via numeric code, QR, or face recognition — the last via a separate inference service (face-api/) with the model pipeline in FaceModel/. MySQL holds all persistent state; JWT handles auth (local + Google OAuth)
 
 ### Key Features
 
@@ -77,13 +38,12 @@ The project is motivated by the need for a practical college-level attendance pl
 - Teacher approval and override of pending attendance records.
 - Student attendance dashboards and per-subject statistics.
 - Audit logging for key system actions.
-- dynamic Time Table for professors and students 
 - Mobile application support through Expo Router.
 - Web application support through a Vite + React interface.
 
 ---
 
-## 3. System Architecture
+## 2. System Architecture
 
 ### High-Level Architecture
 
@@ -92,7 +52,7 @@ The system follows a layered client-server architecture:
 - **Client layer:** Mobile app in `AppFrontend` and web app in `frontend`.
 - **Application layer:** FastAPI backend in `backend`.
 - **Data layer:** MySQL database managed through SQLAlchemy ORM.
-- **AI/ML layer:** Face recognition pipeline exposed  trained/validated through `FaceModel`.
+- **AI/ML layer:** Face recognition pipeline exposed through `face-api` and trained/validated through `FaceModel`.
 - **External services:** Google OAuth and optional cloud storage for uploaded attendance images.
 
 ```mermaid
@@ -235,7 +195,7 @@ sequenceDiagram
 
 ---
 
-## 4. Technology Stack
+## 3. Technology Stack
 
 | Layer | Technologies |
 |---|---|
@@ -248,7 +208,7 @@ sequenceDiagram
 
 ---
 
-## 5. Project Folder Structure
+## 4. Project Folder Structure
 
 | Path | Purpose |
 |---|---|
@@ -286,7 +246,7 @@ sequenceDiagram
 
 ---
 
-## 6. Database Design
+## 5. Database Design
 
 ### Database Schema
 
@@ -351,7 +311,7 @@ erDiagram
 
 ---
 
-## 7. API Documentation
+## 6. API Documentation
 
 ### API Conventions
 
@@ -492,7 +452,7 @@ erDiagram
 
 ---
 
-## 8. Authentication and Security
+## 7. Authentication and Security
 
 ### Login System
 
@@ -535,9 +495,9 @@ The system supports two login paths:
 
 ---
 
-## 9. Core Modules Explanation
+## 8. Core Modules Explanation
 
-### 9.1 Authentication Module
+### 8.1 Authentication Module
 
 **Purpose:**
 Handles registration, login, Google OAuth, and current-user resolution.
@@ -559,7 +519,7 @@ FastAPI, JWT, bcrypt, Google Auth, Pydantic.
 **Integration:**
 Used by every other module because all protected operations depend on the current user identity.
 
-### 9.2 Subject and Class Management Module
+### 8.2 Subject and Class Management Module
 
 **Purpose:**
 Creates and maintains subjects and class sections.
@@ -581,7 +541,7 @@ SQLAlchemy, FastAPI routes, Pydantic request schemas.
 **Integration:**
 Forms the foundation for enrollment, timetable, and attendance session modules.
 
-### 9.3 Enrollment Module
+### 8.3 Enrollment Module
 
 **Purpose:**
 Allows students to join classes through codes and supports teacher-side enrollment control.
@@ -602,7 +562,7 @@ FastAPI, SQLAlchemy, unique code generation, audit logging.
 **Integration:**
 Feeds the attendance session population logic and student timetable views.
 
-### 9.4 Attendance Session Module
+### 8.4 Attendance Session Module
 
 **Purpose:**
 Manages lecture-specific attendance windows.
@@ -625,7 +585,7 @@ FastAPI, SQLAlchemy, JWT, audit logging.
 **Integration:**
 Connects directly to QR, code, face recognition, and approval workflows.
 
-### 9.5 QR and Code Attendance Module
+### 8.5 QR and Code Attendance Module
 
 **Purpose:**
 Supports low-friction attendance capture through a numeric code or QR token.
@@ -647,7 +607,7 @@ qrcode, pyzbar, Pillow, FastAPI file upload handling.
 **Integration:**
 Shares the attendance record update logic with face recognition and teacher approval flows.
 
-### 9.6 Face Recognition Module
+### 8.6 Face Recognition Module
 
 **Purpose:**
 Automates classroom attendance based on uploaded images.
@@ -669,7 +629,7 @@ InsightFace, ONNX Runtime, OpenCV, NumPy, scikit-learn, Torch, Pillow.
 **Integration:**
 Works with the attendance session module and the storage service.
 
-### 9.7 Timetable and Schedule Module
+### 8.7 Timetable and Schedule Module
 
 **Purpose:**
 Provides weekly class visibility for teachers and students.
@@ -690,7 +650,7 @@ FastAPI, SQLAlchemy, date and time handling, color utility helpers.
 **Integration:**
 Uses class, subject, and enrollment data to generate calendar-style views.
 
-### 9.8 Reporting and Audit Module
+### 8.8 Reporting and Audit Module
 
 **Purpose:**
 Provides transparency and traceability.
@@ -712,11 +672,11 @@ Supports administrative review, debugging, and institutional accountability.
 
 ---
 
-## 10. AI/ML Module Explanation
+## 9. ML Module Explanation
 
 ### Model Used
 
-The AI portion of the project is centered on face recognition. The repository contains an operational inference layer in `face-api` and a model development pipeline in `FaceModel`.
+The ML portion of the project is centered on face recognition. The repository contains an operational inference layer in `face-api` and a model development pipeline in `FaceModel`.
 
 ### Training Process
 
@@ -739,18 +699,6 @@ The repository includes dataset and embedding directories such as:
 - `ICFD_Samples/`
 - `recognized_outputs/`
 
-These folders indicate a workflow for experimentation, embedding generation, and recognized result storage.
-
-### Preprocessing
-
-Typical preprocessing steps include:
-
-- face detection and cropping,
-- resizing,
-- embedding extraction,
-- normalization,
-- classifier input preparation.
-
 ### Inference Pipeline
 
 1. The teacher uploads an attendance image.
@@ -760,17 +708,15 @@ Typical preprocessing steps include:
 5. Attendance records are updated with face-detection results.
 6. Annotated images are optionally returned for review.
 
-### Accuracy / Performance Metrics
+---
 
-The repository includes evaluation artifacts and experiment outputs in the face-recognition area. The system exposes confidence scores per recognition result, and final attendance logic uses these outputs together with QR or code verification. For the final report, insert the latest metrics from the most recent evaluation run if you want a numerical accuracy summary.
+## 10. Installation Guide
+
+Refer to [`SETUP_GUIDE`](./SETUP_GUIDE.md).
 
 ---
 
-## 11. Installation Guide
-
-For a focused step-by-step setup guide that lists local ports, environment variables, and runnable commands, see [SETUP_GUIDE.md](SETUP_GUIDE.md).
-
-## 12. Deployment Guide
+## 11. Deployment Guide
 
 ### Deployment Architecture
 
@@ -812,9 +758,9 @@ A practical deployment layout is:
 
 ---
 
-## 13. Architecture Diagrams
+## 12. Architecture Diagrams
 
-The project already includes an architecture notes file at `architecture_diagrams.md`. For the final report, the following diagrams are recommended:
+The project already includes an architecture notes file at `architecture_diagrams.md`.
 
 - High-level system architecture diagram.
 - Backend router and service flow diagram.
@@ -822,24 +768,9 @@ The project already includes an architecture notes file at `architecture_diagram
 - ER diagram for the database schema.
 - Face recognition processing flow diagram.
 
-If you want a polished report version, convert these Mermaid diagrams into rendered images and place them directly under the architecture and database chapters.
-
 ---
 
-
-
-## 15. Challenges Faced
-
-- Integrating multiple attendance verification modes into one consistent workflow.
-- Ensuring that one class cannot run multiple active attendance sessions at the same time.
-- Synchronizing QR expiry, code expiry, and session expiry rules.
-- Mapping face-recognition results to enrolled students reliably.
-- Maintaining role-based security across many endpoints.
-- Supporting both mobile and web client configurations with different deployment targets.
-- Avoiding duplicate database queries and N+1 lookup patterns in reporting and batch endpoints.
----
-
-## 16. Performance Optimizations
+## 13. Performance Optimizations
 
 - Batch endpoints were introduced for active sessions, students, enrollment codes, and schedules.
 - Joined ORM loading is used in student list endpoints to avoid N+1 queries.
@@ -851,5 +782,16 @@ If you want a polished report version, convert these Mermaid diagrams into rende
 
 ---
 
+## 14. References
 
-
+- FastAPI documentation: https://fastapi.tiangolo.com/
+- SQLAlchemy documentation: https://docs.sqlalchemy.org/
+- Pydantic documentation: https://docs.pydantic.dev/
+- React documentation: https://react.dev/
+- React Native and Expo documentation: https://docs.expo.dev/
+- MySQL documentation: https://dev.mysql.com/doc/
+- Google OAuth documentation: https://developers.google.com/identity
+- Alembic documentation: https://alembic.sqlalchemy.org/
+- InsightFace project: https://github.com/deepinsight/insightface
+- ONNX Runtime documentation: https://onnxruntime.ai/
+- OpenCV documentation: https://opencv.org/

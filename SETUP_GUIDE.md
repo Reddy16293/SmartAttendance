@@ -1,4 +1,4 @@
-# Smart Attendance - College Attendance Management System — Setup Guide
+# Smart Attendance — Setup Guide
 
 A step-by-step guide to running the College Attendance Management System locally for development and testing.
 
@@ -12,7 +12,7 @@ A step-by-step guide to running the College Attendance Management System locally
 - [2. Backend Setup](#2-backend-setup)
 - [3. Frontend Setup](#3-frontend-setup)
 - [4. Mobile Setup](#4-mobile-setup)
-- [5. Face Recognition Model Setup(#5-Face Recognition Model Setup) ]
+- [5. Face Recognition Model Setup](#5-face-recognition-model-setup)
 - [Service Ports Reference](#service-ports-reference)
 - [Troubleshooting](#troubleshooting)
 
