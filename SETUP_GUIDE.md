@@ -1,6 +1,6 @@
 # Smart Attendance — Setup Guide
 
-A step-by-step guide to running the College Attendance Management System locally for development and testing.
+A step-by-step guide to running the application locally for development and testing.
 
 ---
 
