@@ -4,7 +4,13 @@
 
 ### Model Used
 
-The ML portion of the project is centered on face recognition. The repository contains an operational inference layer in `face-api` and a model development pipeline in `FaceModel`.
+The ML portion of the project uses **[InsightFace](https://github.com/deepinsight/insightface)** for face recognition and verification.
+
+**Model Variant:** buffalo_l, a large-scale face detection and recognition model trained using [ArcFace: Additive Angular Margin Loss for Deep Face Recognition](https://arxiv.org/abs/1801.07698).
+
+**Inference:** The model runs via [ONNX Runtime](https://onnxruntime.ai/) for cross-platform compatibility.
+
+The repository contains an operational inference layer in `face-api` and a model development pipeline in `FaceModel`.
 
 ### Training Process
 

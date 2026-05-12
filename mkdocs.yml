@@ -41,5 +41,5 @@ nav:
       - Database Design: manual/database-design.md
       - API Documentation: manual/api-documentation.md
       - Authentication, Security, and Core Modules: manual/auth-security-core-modules.md
-      - ML Module, Installation, and Deployment: manual/ml-installation-deployment.md
+      - Face Recognition Module: manual/ml-face-recognition.md
       - References: manual/references.md

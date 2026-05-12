@@ -146,11 +146,10 @@ The database is relational and normalized around a core academic model:
 
 ### AI/ML Architecture
 
-The AI/ML portion of the system supports face recognition for classroom attendance.
+The AI/ML portion of the system supports face recognition for classroom attendance using **[InsightFace](https://github.com/deepinsight/insightface)** with the buffalo_l model variant, trained via [ArcFace: Additive Angular Margin Loss for Deep Face Recognition](https://arxiv.org/abs/1801.07698).
 
 - `FaceModel` contains training, embedding generation, evaluation, and recognition scripts.
-
-- The backend uploads classroom images, passes them to the recognition layer, receives matched identities and confidence scores, and updates attendance records.
+- The backend uploads classroom images, passes them to the recognition layer via [ONNX Runtime](https://onnxruntime.ai/), receives matched identities and confidence scores, and updates attendance records.
 - OpenCV, InsightFace, ONNX Runtime, NumPy, and scikit-learn are used in the AI pipeline.
 
 ### Data Flow Between Modules

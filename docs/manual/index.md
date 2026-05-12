@@ -9,5 +9,5 @@ Use this guide for implementation details, system boundaries, and internal desig
 - [Database Design](database-design.md)
 - [API Documentation](api-documentation.md)
 - [Authentication, Security, and Core Modules](auth-security-core-modules.md)
-- [ML Module, Installation, and Deployment](ml-installation-deployment.md)
+- [Face Recognition Module](ml-face-recognition.md)
 - [References](references.md)
