@@ -10,4 +10,4 @@ Use this guide for implementation details, system boundaries, and internal desig
 - [API Documentation](api-documentation.md)
 - [Authentication, Security, and Core Modules](auth-security-core-modules.md)
 - [ML Module, Installation, and Deployment](ml-installation-deployment.md)
-- [Architecture Diagrams, Performance, and References](diagrams-performance-references.md)
+- [References](references.md)

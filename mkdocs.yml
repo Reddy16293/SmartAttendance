@@ -42,4 +42,4 @@ nav:
       - API Documentation: manual/api-documentation.md
       - Authentication, Security, and Core Modules: manual/auth-security-core-modules.md
       - ML Module, Installation, and Deployment: manual/ml-installation-deployment.md
-      - Architecture Diagrams, Performance, and References: manual/diagrams-performance-references.md
+      - References: manual/references.md
