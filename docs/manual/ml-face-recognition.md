@@ -45,3 +45,29 @@ For deployment guidance, refer to the [Setup Guide](../setup/index.md). The AI s
 - A separate container on a hosting platform (Render, Docker host, VM)
 - A local service with ngrok tunneling for development and testing
 - An isolated microservice behind authenticated API endpoints
+
+## Sequence Diagram: Face Recognition Mode
+
+```mermaid
+sequenceDiagram
+	participant Professor
+	participant Client
+	participant AttendanceSystem
+	participant MLService
+	participant Database
+	participant AuditService
+
+	Professor->>Client: Start session / Upload classroom image
+	Client->>AttendanceSystem: POST /attendance/session/{id}/upload-image (image + JWT)
+	AttendanceSystem->>Database: Verify session & permissions
+	AttendanceSystem->>MLService: POST /recognize (image)
+	MLService-->>AttendanceSystem: recognized faces (name, confidence)
+	AttendanceSystem->>Database: Upsert attendance records (face_detected, confidence)
+	AttendanceSystem->>AuditService: log image_upload
+	AttendanceSystem-->>Client: Response (recognized_students, annotated_image)
+	Professor->>Client: Review results & finalize session
+	Client->>AttendanceSystem: POST /teachers/attendance/session/{id}/finalize
+	AttendanceSystem->>Database: Close session, compute stats
+	AttendanceSystem->>AuditService: log session_finalized
+	AttendanceSystem-->>Client: Finalized response (stats)
+```

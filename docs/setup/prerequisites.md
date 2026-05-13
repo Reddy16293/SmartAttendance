@@ -4,7 +4,7 @@ Ensure the following are installed before proceeding:
 
 | Tool | Version | Purpose |
 |---|---|---|
-| Python | 3.10+ | Backend runtime |
+| Python | 3.11+ | Backend runtime |
 | pip | Latest | Python package manager |
 | Node.js | 16+ | Frontend and mobile |
 | npm | Latest | Node package manager |

@@ -9,14 +9,14 @@ echo "========================================================="
 echo ""
 
 # Check if Python is installed
-if ! command -v python3 &> /dev/null; then
-    echo "Error: Python 3.9+ is required but not installed."
+if ! command -v python3.11 &> /dev/null; then
+    echo "Error: Python 3.11+ is required but not installed."
     echo "Please install Python from https://www.python.org/"
     exit 1
 fi
 
 echo "[1/5] Creating virtual environment..."
-python3 -m venv venv
+python3.11 -m venv venv
 if [ $? -ne 0 ]; then
     echo "Error: Failed to create virtual environment"
     exit 1

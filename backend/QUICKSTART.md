@@ -3,7 +3,7 @@
 ## 🚀 Getting Started in 5 Minutes
 
 ### System Requirements
-- Python 3.9+
+- Python 3.11+
 - MySQL 8.0+
 - pip or poetry
 

@@ -212,7 +212,7 @@ else:
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.9+
+- Python 3.11+
 - MySQL 8.0+
 - pip or poetry
 
@@ -225,7 +225,7 @@ cd backend
 
 2. **Create and activate virtual environment**
 ```bash
-python -m venv venv
+python3.11 -m venv venv
 
 # Windows
 venv\Scripts\activate

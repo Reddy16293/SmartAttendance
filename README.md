@@ -6,7 +6,7 @@ Ensure the following are installed before proceeding:
 
 | Tool | Version | Purpose |
 |---|---|---|
-| Python | 3.10+ | Backend runtime |
+| Python | 3.11+ | Backend runtime |
 | pip | Latest | Python package manager |
 | Node.js | 16+ | Frontend and mobile |
 | npm | Latest | Node package manager |
@@ -110,7 +110,7 @@ CLOUDINARY_URL=your-cloudinary-url
 
 ```bash
 cd backend
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```

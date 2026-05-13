@@ -61,7 +61,7 @@ echo ""
 log_info "Checking prerequisites..."
 
 if ! command_exists python3; then
-    log_error "python3 is not installed. Please install Python 3.9+"
+    log_error "python3 is not installed. Please install Python 3.11+"
     exit 1
 fi
 
