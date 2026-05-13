@@ -46,7 +46,9 @@ For deployment guidance, refer to the [Setup Guide](../setup/index.md). The AI s
 - A local service with ngrok tunneling for development and testing
 - An isolated microservice behind authenticated API endpoints
 
-## Sequence Diagram: Face Recognition Mode
+## Sequence Diagram: 
+
+### Face Recognition Mode (Face Recognition + QR/Numeric-Code)
 
 ```mermaid
 sequenceDiagram
@@ -70,4 +72,27 @@ sequenceDiagram
 	AttendanceSystem->>Database: Close session, compute stats
 	AttendanceSystem->>AuditService: log session_finalized
 	AttendanceSystem-->>Client: Finalized response (stats)
+```
+### Attendance Flow (Only QR / Code Submission)
+
+```mermaid
+sequenceDiagram
+	participant Professor
+	participant Student
+	participant Client
+	participant AttendanceSystem
+	participant MLService
+	participant Database
+
+	Professor->>Client: Start attendance session
+	AttendanceSystem->>Database: Create session with QR/code
+	Student->>Client: Submit QR code or attendance code
+	Client->>AttendanceSystem: Send submission with JWT
+	AttendanceSystem->>Database: Validate session and enrollment
+	AttendanceSystem->>MLService: Optional face verification for the session
+	MLService-->>AttendanceSystem: Recognition result
+	AttendanceSystem->>Database: Save attendance record
+	Professor->>Client: Review and finalize session
+	Client->>AttendanceSystem: Finalize session request
+	AttendanceSystem->>Database: Close session and store summary
 ```
