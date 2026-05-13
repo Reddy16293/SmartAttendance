@@ -96,18 +96,8 @@ graph TB
     
 	BE -->|Verify ID Token<br/>User Info| OAUTH
     
-	WEB -.->|OAuth Redirect<br/>https://accounts.google.com| OAUTH
-	MOBILE -.->|OAuth Redirect| OAUTH
-    
-	style Users fill:lightblue,stroke:darkblue
-	style Clients fill:lavender,stroke:purple
-	style CoreSystem fill:lightgreen,stroke:green
-	style ExternalServices fill:lightyellow,stroke:orange
-    
-	classDef userStyle fill:lightblue,stroke:darkblue,color:#000
-	classDef clientStyle fill:lavender,stroke:purple,color:#000
-	classDef coreStyle fill:lightgreen,stroke:green,color:#000
-	classDef externalStyle fill:lightyellow,stroke:orange,color:#000
+    WEB -.->|OAuth Redirect<br/>https://accounts.google.com| OAUTH
+    MOBILE -.->|OAuth Redirect| OAUTH
 ```
 
 ### Backend Component Diagram

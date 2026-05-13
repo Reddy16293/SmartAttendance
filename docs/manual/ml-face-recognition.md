@@ -46,6 +46,23 @@ For deployment guidance, refer to the [Setup Guide](../setup/index.md). The AI s
 - A local service with ngrok tunneling for development and testing
 - An isolated microservice behind authenticated API endpoints
 
+## Dual Verification (Face + QR/Code) — Flow Summary
+
+This project supports an optional "dual verification" mode where both face-recognition and a code/QR must be verified before marking a student present. The backend enforces the following simplified flow:
+
+- Session created with `face_recognition_enabled` and `attendance_code`/`qr_enabled` → session requires dual verification.
+- On session start the system pre-creates attendance records with `status = manual_review`.
+- Professor uploads image → face recognition runs and sets `face_detected = true` for matched records.
+	- If the session requires dual verification, the record transitions to `pending_approval` (or similar), not `present`.
+- Student submits the attendance code or scans the QR → backend sets `qr_verified = true` for that record.
+	- When both `face_detected` and `qr_verified` are true and the session requires dual verification, the backend computes and sets `status = present`.
+
+Edge cases:
+- If the student never submits the code before session expiry, the record stays `pending_approval` and awaits teacher review (`manual_review`).
+- If dual verification is not enabled, a single successful signal (face OR code/QR as configured) may be enough to mark `present` depending on session settings.
+
+See the repository file `DUAL_VERIFICATION_TEST_GUIDE.md` for test patterns and expected log lines.
+
 ## Sequence Diagram: 
 
 ### Face Recognition Mode (Face Recognition + QR/Numeric-Code)
